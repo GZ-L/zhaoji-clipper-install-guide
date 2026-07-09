@@ -1,0 +1,73 @@
+name: Sync Upstream Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync upstream release metadata
+        run: bash scripts/sync-upstream-release.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Create update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet; then
+            echo "No upstream release metadata changes."
+            exit 0
+          fi
+
+          branch="sync/upstream-zj-clipper-release"
+          title="Sync upstream ZJ Clipper release metadata"
+          body_file="$(mktemp)"
+
+          cat > "$body_file" <<'EOF'
+          ## What changed
+
+          This PR syncs ZJ Clipper release metadata from the official upstream repository `AidenXu-1/ZJ-clipper`.
+
+          ## Source
+
+          - Upstream account: `AidenXu-1`
+          - Upstream repository: `AidenXu-1/ZJ-clipper`
+          - Official releases: https://github.com/AidenXu-1/ZJ-clipper/releases
+
+          ## Scope
+
+          This repository only tracks release metadata and checksums. It does not redistribute the upstream extension zip, built JavaScript files, source code, icons, or other upstream assets.
+
+          ## Review checklist
+
+          - Confirm the upstream Release page matches the synced tag and asset.
+          - Confirm the SHA-256 change is expected.
+          - Confirm `scripts/install-chrome.sh` still installs from the official upstream Release asset.
+          EOF
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add README.md NOTICE.md docs/INSTALL.md upstream/releases/latest.json checksums/SHA256SUMS.txt
+          git commit -m "$title"
+          git push -f origin "$branch"
+
+          existing_pr="$(gh pr list --head "$branch" --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$existing_pr" ]; then
+            gh pr edit "$existing_pr" --title "$title" --body-file "$body_file"
+          else
+            gh pr create --base main --head "$branch" --title "$title" --body-file "$body_file"
+          fi

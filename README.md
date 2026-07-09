@@ -5,6 +5,17 @@
 
 重要说明：本仓库不是上游项目源码仓库，也不重新分发扩展源码、解压后的 JS 文件或 zip 包。上游项目采用保留全部权利的许可证，未授权复制或分发软件本体。因此本仓库只保存安装脚本、校验值和使用说明；真正的扩展包会在安装时从上游 GitHub Release 下载。
 
+## 来源账号
+
+本仓库对标的唯一官方来源是：
+
+- 来源账号：`AidenXu-1`
+- 来源仓库：`AidenXu-1/ZJ-clipper`
+- 官方仓库：https://github.com/AidenXu-1/ZJ-clipper
+- 官方 Release：https://github.com/AidenXu-1/ZJ-clipper/releases
+
+本仓库不改名、不二次包装成原创项目，也不保存上游扩展本体。它的定位是：记录来源、提供安装规范、保存校验信息，并从官方 Release 获取安装包。
+
 ## 这是什么
 
 兆基 Clipper 是一个中文网页剪藏浏览器扩展，主要用于把网页内容转换成 Markdown，并保存到 Obsidian 仓库。它适合做知识库归档、资料收藏、长文整理和中文内容平台剪藏。
@@ -17,15 +28,27 @@
 4. 在弹窗中预览、编辑标题、标签和正文。
 5. 保存到 Obsidian，或在配置后保存到飞书知识库。
 
-## 当前固定版本
+## 当前同步版本
 
-本仓库安装脚本固定安装 Chrome 版：
+本仓库安装脚本默认安装已经同步到本仓库的 Chrome 版：
 
+<!-- upstream-current-start -->
 - 上游仓库：`AidenXu-1/ZJ-clipper`
 - Release：`v4.0.0`
 - 文件：`zhaoji-clipper-4.0.0-chrome.zip`
+- 文件大小：`351659` bytes
 - SHA-256：`016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb`
+- 官方 Release：https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.0.0
 - 默认安装目录：`~/Applications/ZJ-clipper/chrome`
+<!-- upstream-current-end -->
+
+同步元数据保存在：
+
+```text
+upstream/releases/latest.json
+```
+
+如果上游官方 Release 有更新，仓库的 GitHub Actions 会自动检查并创建同步 PR。合并 PR 后，安装脚本会使用新的版本、文件大小、下载地址和 SHA-256。
 
 ## 快速安装
 
@@ -104,10 +127,26 @@ bash scripts/install-chrome.sh
 
 更多排查见 [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)。
 
+## 更新同步
+
+本仓库通过 GitHub Actions 对标来源账号 `AidenXu-1`：
+
+1. 每天检查 `AidenXu-1/ZJ-clipper` 的最新 Release。
+2. 获取 Chrome 成品包名称、下载地址、文件大小和 SHA-256。
+3. 更新 `upstream/releases/latest.json` 和 `checksums/SHA256SUMS.txt`。
+4. 如有变化，自动创建或更新同步 PR，等待人工 review 后合并。
+
+这样既能跟进上游更新，又不会复制或重新分发上游扩展本体。
+
+详细规则见 [docs/UPSTREAM.md](docs/UPSTREAM.md)。
+
 ## 仓库结构
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       └── sync-upstream-release.yml
 ├── README.md
 ├── NOTICE.md
 ├── checksums/
@@ -116,13 +155,18 @@ bash scripts/install-chrome.sh
 │   ├── EFFECTS.md
 │   ├── INSTALL.md
 │   ├── TROUBLESHOOTING.md
+│   ├── UPSTREAM.md
 │   └── USAGE.md
-└── scripts/
-    └── install-chrome.sh
+├── scripts/
+│   ├── install-chrome.sh
+│   └── sync-upstream-release.sh
+└── upstream/
+    └── releases/
+        └── latest.json
 ```
 
 ## 版权和来源
 
-扩展本体来自上游项目 [AidenXu-1/ZJ-clipper](https://github.com/AidenXu-1/ZJ-clipper)。上游许可证保留全部权利，未授权复制、修改或分发软件本体。本仓库只提供安装说明和自动下载脚本，不包含扩展本体。
+扩展本体来自上游项目 [AidenXu-1/ZJ-clipper](https://github.com/AidenXu-1/ZJ-clipper)。上游许可证保留全部权利，未授权复制、修改或分发软件本体。本仓库只提供安装说明、同步元数据和自动下载脚本，不包含扩展本体。
 
 详见 [NOTICE.md](NOTICE.md)。

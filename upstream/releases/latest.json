@@ -1,0 +1,28 @@
+{
+  "chrome_asset": {
+    "api_url": "https://api.github.com/repos/AidenXu-1/ZJ-clipper/releases/assets/463992496",
+    "browser_download_url": "https://github.com/AidenXu-1/ZJ-clipper/releases/download/v4.0.0/zhaoji-clipper-4.0.0-chrome.zip",
+    "content_type": "application/zip",
+    "created_at": "2026-07-02T05:45:49Z",
+    "id": 463992496,
+    "name": "zhaoji-clipper-4.0.0-chrome.zip",
+    "sha256": "016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb",
+    "size": 351659,
+    "updated_at": "2026-07-02T05:45:50Z"
+  },
+  "release": {
+    "draft": false,
+    "html_url": "https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.0.0",
+    "name": "兆基clipper 4.0.0",
+    "prerelease": false,
+    "published_at": "2026-06-30T13:41:50Z",
+    "tag_name": "v4.0.0"
+  },
+  "schema_version": 1,
+  "source": {
+    "account": "AidenXu-1",
+    "releases_url": "https://github.com/AidenXu-1/ZJ-clipper/releases",
+    "repository": "AidenXu-1/ZJ-clipper",
+    "repository_url": "https://github.com/AidenXu-1/ZJ-clipper"
+  }
+}

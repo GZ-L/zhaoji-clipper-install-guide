@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+METADATA_PATH="${ZJ_CLIPPER_METADATA:-$REPO_ROOT/upstream/releases/latest.json}"
+
 VERSION="4.0.0"
 TAG="v${VERSION}"
 ASSET="zhaoji-clipper-${VERSION}-chrome.zip"
@@ -11,7 +15,7 @@ DIRECT_URL="https://github.com/AidenXu-1/ZJ-clipper/releases/download/${TAG}/${A
 
 INSTALL_ROOT="${ZJ_CLIPPER_HOME:-$HOME/Applications/ZJ-clipper}"
 TARGET="${INSTALL_ROOT}/chrome"
-ZIP="${INSTALL_ROOT}/${ASSET}"
+ZIP=""
 
 file_size() {
   if stat -f%z "$1" >/dev/null 2>&1; then
@@ -27,6 +31,46 @@ sha256_file() {
   else
     sha256sum "$1" | awk '{print $1}'
   fi
+}
+
+load_release_metadata() {
+  if [ ! -f "$METADATA_PATH" ]; then
+    return 0
+  fi
+
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 not found; using built-in release metadata." >&2
+    return 0
+  fi
+
+  eval "$(python3 - "$METADATA_PATH" <<'PY'
+import json
+import shlex
+import sys
+from pathlib import Path
+
+metadata = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+release = metadata["release"]
+asset = metadata["chrome_asset"]
+tag = release["tag_name"]
+version = tag[1:] if tag and tag.startswith("v") else tag
+
+values = {
+    "VERSION": version,
+    "TAG": tag,
+    "ASSET": asset["name"],
+    "EXPECTED_SHA": asset["sha256"],
+    "EXPECTED_SIZE": str(asset["size"]),
+    "ASSET_API": asset["api_url"],
+    "DIRECT_URL": asset["browser_download_url"],
+}
+
+for key, value in values.items():
+    if value in (None, ""):
+        raise SystemExit(f"Missing metadata value: {key}")
+    print(f"{key}={shlex.quote(str(value))}")
+PY
+)"
 }
 
 download_with_resume() {
@@ -68,6 +112,9 @@ download_with_resume() {
 }
 
 main() {
+  load_release_metadata
+  ZIP="${INSTALL_ROOT}/${ASSET}"
+
   if ! command -v curl >/dev/null 2>&1; then
     echo "curl is required." >&2
     exit 1

@@ -12,7 +12,7 @@ cd zhaoji-clipper-install-guide
 bash scripts/install-chrome.sh
 ```
 
-脚本会把扩展解压到：
+脚本会读取 `upstream/releases/latest.json` 中已经同步的上游版本信息，然后把扩展解压到：
 
 ```text
 ~/Applications/ZJ-clipper/chrome
@@ -28,6 +28,7 @@ bash scripts/install-chrome.sh
 
 ## 方式二：手动安装
 
+<!-- upstream-manual-install-start -->
 1. 打开上游 Release 页面：
 
 ```text
@@ -51,6 +52,7 @@ shasum -a 256 zhaoji-clipper-4.0.0-chrome.zip
 ```text
 016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb
 ```
+<!-- upstream-manual-install-end -->
 
 4. 解压 zip。
 
@@ -94,3 +96,13 @@ chrome://extensions/
 - Chrome 中文按钮「加载未打包的扩展程序」就是 `Load unpacked`。
 - 不要点击「打包扩展程序」，那是开发者重新打包扩展用的。
 - 浏览器扩展安装必须由用户在 Chrome 中确认，脚本不能代替这个确认动作。
+
+## 更新来源
+
+安装脚本使用的版本信息来自官方来源账号：
+
+```text
+AidenXu-1/ZJ-clipper
+```
+
+本仓库的同步脚本和 GitHub Actions 会跟踪上游官方 Release，只同步版本号、下载地址、文件大小和 SHA-256，不同步扩展本体。
