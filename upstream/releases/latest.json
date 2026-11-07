@@ -1,22 +1,22 @@
 {
   "chrome_asset": {
-    "api_url": "https://api.github.com/repos/AidenXu-1/ZJ-clipper/releases/assets/463992496",
-    "browser_download_url": "https://github.com/AidenXu-1/ZJ-clipper/releases/download/v4.0.0/zhaoji-clipper-4.0.0-chrome.zip",
+    "api_url": "https://api.github.com/repos/AidenXu-1/ZJ-clipper/releases/assets/511756414",
+    "browser_download_url": "https://github.com/AidenXu-1/ZJ-clipper/releases/download/v4.1.0/zhaoji-clipper-4.1.0-chrome.zip",
     "content_type": "application/zip",
-    "created_at": "2026-07-02T05:45:49Z",
-    "id": 463992496,
-    "name": "zhaoji-clipper-4.0.0-chrome.zip",
-    "sha256": "016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb",
-    "size": 351659,
-    "updated_at": "2026-07-02T05:45:50Z"
+    "created_at": "2026-08-12T15:40:57Z",
+    "id": 511756414,
+    "name": "zhaoji-clipper-4.1.0-chrome.zip",
+    "sha256": "71348c9d994a40f6e7fe318a0d82f3d569acf3adc6c954df0995e64ac253310c",
+    "size": 355564,
+    "updated_at": "2026-08-12T15:42:25Z"
   },
   "release": {
     "draft": false,
-    "html_url": "https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.0.0",
-    "name": "兆基clipper 4.0.0",
+    "html_url": "https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.1.0",
+    "name": "兆基clipper v4.1.0 · 知乎抓取与弹窗体验修复",
     "prerelease": false,
-    "published_at": "2026-06-30T13:41:50Z",
-    "tag_name": "v4.0.0"
+    "published_at": "2026-08-12T15:40:57Z",
+    "tag_name": "v4.1.0"
   },
   "schema_version": 1,
   "source": {

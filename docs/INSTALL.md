@@ -32,25 +32,25 @@ bash scripts/install-chrome.sh
 1. 打开上游 Release 页面：
 
 ```text
-https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.0.0
+https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.1.0
 ```
 
 2. 下载：
 
 ```text
-zhaoji-clipper-4.0.0-chrome.zip
+zhaoji-clipper-4.1.0-chrome.zip
 ```
 
 3. 校验 SHA-256：
 
 ```bash
-shasum -a 256 zhaoji-clipper-4.0.0-chrome.zip
+shasum -a 256 zhaoji-clipper-4.1.0-chrome.zip
 ```
 
 结果应为：
 
 ```text
-016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb
+71348c9d994a40f6e7fe318a0d82f3d569acf3adc6c954df0995e64ac253310c
 ```
 <!-- upstream-manual-install-end -->
 
