@@ -34,11 +34,11 @@
 
 <!-- upstream-current-start -->
 - 上游仓库：`AidenXu-1/ZJ-clipper`
-- Release：`v4.0.0`
-- 文件：`zhaoji-clipper-4.0.0-chrome.zip`
-- 文件大小：`351659` bytes
-- SHA-256：`016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb`
-- 官方 Release：https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.0.0
+- Release：`v4.1.0`
+- 文件：`zhaoji-clipper-4.1.0-chrome.zip`
+- 文件大小：`355564` bytes
+- SHA-256：`71348c9d994a40f6e7fe318a0d82f3d569acf3adc6c954df0995e64ac253310c`
+- 官方 Release：https://github.com/AidenXu-1/ZJ-clipper/releases/tag/v4.1.0
 - 默认安装目录：`~/Applications/ZJ-clipper/chrome`
 <!-- upstream-current-end -->
 

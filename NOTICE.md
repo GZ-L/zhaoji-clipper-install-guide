@@ -7,10 +7,10 @@ This repository is an installation guide and helper script repository for the up
 - URL: https://github.com/AidenXu-1/ZJ-clipper
 - Releases: https://github.com/AidenXu-1/ZJ-clipper/releases
 <!-- upstream-notice-start -->
-- Release used by this guide: `v4.0.0`
-- Chrome asset: `zhaoji-clipper-4.0.0-chrome.zip`
-- Chrome asset size: `351659` bytes
-- Chrome asset SHA-256: `016817dc815a6c529480ef5d7a0787311a61ec8dc2193f431d68544ee65636fb`
+- Release used by this guide: `v4.1.0`
+- Chrome asset: `zhaoji-clipper-4.1.0-chrome.zip`
+- Chrome asset size: `355564` bytes
+- Chrome asset SHA-256: `71348c9d994a40f6e7fe318a0d82f3d569acf3adc6c954df0995e64ac253310c`
 <!-- upstream-notice-end -->
 
 This repository does not contain or redistribute the upstream extension package, source code, built JavaScript files, icons, or other upstream assets.
